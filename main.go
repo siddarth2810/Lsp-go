@@ -40,6 +40,13 @@ func handleMessage(logger *log.Logger, method string, contents []byte) {
 		}
 		logger.Printf("Connected to: %s %s", request.Params.ClientInfo.Name, request.Params.ClientInfo.Version)
 
+		// send this reply back !
+		msg := lsp.NewInitializeResponse(request.ID)
+		reply := rpc.EncodeMessage(msg)
+		writer := os.Stdout
+		writer.Write([]byte(reply))
+		logger.Print("Sent the reply")
+
 	}
 }
 

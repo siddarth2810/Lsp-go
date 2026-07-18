@@ -1,3 +1,6 @@
 [LSP]2026/07/18 Hey lsp started!
 [LSP]2026/07/18 Received message with method: initialize
 [LSP]2026/07/18 Connected to: Neovim 0.11.4+v0.11.4
+[LSP]2026/07/18 Sent the reply
+[LSP]2026/07/18 Received message with method: initialized
+[LSP]2026/07/18 Received message with method: shutdown
