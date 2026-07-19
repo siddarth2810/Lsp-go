@@ -15,12 +15,41 @@ type TextDocumentItem struct {
 	Text string `json:"text"`
 }
 
-// textDocument_didopen
+type TextDocumentIdentifier struct {
+	URI string `json:"uri"`
+}
+
+type VersionTextDocumentIdentifier struct {
+	TextDocumentIdentifier
+	Version int `json:"version"`
+}
+
+// textDocument/didOpen
 type DidOpenTextDocumentNotification struct {
 	Notification
 	Params DidOpenTextDocumentParams `json:"params"`
 }
 
 type DidOpenTextDocumentParams struct {
-	TextDocuement TextDocumentItem `json:"textDocument"`
+	TextDocument TextDocumentItem `json:"textDocument"`
+}
+
+// textDocument/didChange
+type TextDocumentDidChangeNotification struct {
+	Notification
+	Params DidChangeTextDocumentParams `json:"params"`
+}
+
+type DidChangeTextDocumentParams struct {
+	TextDocument   VersionTextDocumentIdentifier    `json:"textDocument"`
+	ContentChanges []TextDocumentContentChangeEvent `json:"contentChanges"`
+}
+
+// An event describing the change to a text document. If only a text is provided
+// its considered to be the full content of the document
+type TextDocumentContentChangeEvent struct {
+	Text string `json:"text"`
+
+	// Range
+	// RangeLength
 }

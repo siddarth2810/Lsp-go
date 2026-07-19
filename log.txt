@@ -3,4 +3,6 @@
 [LSP]2026/07/19 Connected to: Neovim 0.11.4+v0.11.4
 [LSP]2026/07/19 Sent the reply
 [LSP]2026/07/19 Received message with method: initialized
+[LSP]2026/07/19 Received message with method: textDocument/didOpen
+[LSP]2026/07/19 Opened : file:///home/sid/personal/lsp/README.md
 [LSP]2026/07/19 Received message with method: shutdown
