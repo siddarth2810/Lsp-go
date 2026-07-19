@@ -38,7 +38,9 @@ func handleMessage(logger *log.Logger, method string, contents []byte) {
 		if err := json.Unmarshal(contents, &request); err != nil {
 			logger.Printf("Hey, couldn't parse this: %s", err)
 		}
-		logger.Printf("Connected to: %s %s", request.Params.ClientInfo.Name, request.Params.ClientInfo.Version)
+		logger.Printf("Connected to: %s %s",
+			request.Params.ClientInfo.Name,
+			request.Params.ClientInfo.Version)
 
 		// send this reply back !
 		msg := lsp.NewInitializeResponse(request.ID)
@@ -46,6 +48,16 @@ func handleMessage(logger *log.Logger, method string, contents []byte) {
 		writer := os.Stdout
 		writer.Write([]byte(reply))
 		logger.Print("Sent the reply")
+
+	case "textDocument/didOpen":
+		var request lsp.DidOpenTextDocumentNotification
+		if err := json.Unmarshal(contents, &request); err != nil {
+			logger.Printf("Hey, couldn't parse this: %s", err)
+		}
+		logger.Printf("Opened : %s\n %s",
+			request.Params.TextDocuement.URI,
+			request.Params.TextDocuement.Text,
+		)
 
 	}
 }

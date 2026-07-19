@@ -32,7 +32,9 @@ type ServerInfo struct {
 	Version string `json:"version"`
 }
 
-type ServerCapabilities struct{}
+type ServerCapabilities struct {
+	TextDocumentSync int `json:"textDocumentSync"`
+}
 
 func NewInitializeResponse(id int) InitializeResponse {
 	return InitializeResponse{
@@ -41,10 +43,12 @@ func NewInitializeResponse(id int) InitializeResponse {
 			ID:  &id,
 		},
 		Result: InitializeResult{
-			Capabilities: ServerCapabilities{},
+			Capabilities: ServerCapabilities{
+				TextDocumentSync: 1,
+			},
 			ServerInfo: ServerInfo{
 				Name:    "sidlsp",
-				Version: "0.69",
+				Version: "0.69-beta",
 			},
 		},
 	}
